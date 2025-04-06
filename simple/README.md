@@ -1,4 +1,4 @@
-# Simple Pipeline
+# Basic spark, jupyter Setup
 The compose file defines a simple [spark](https://spark.apache.org/) setup with a master-node and one worker. In addition [jupyter](https://jupyter.org/) notebooks are enabled to interact via python with the spark-cluster.
 
 URLs:
