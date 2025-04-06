@@ -12,7 +12,7 @@ To start the necessary services use docker compose (or podman, or ...).
 ```bash
 # uses the file compose.yaml|.yml by default
 docker compose rm # remove old containers if available
-docker compose up --build # rebuild the provided Dockerfile
+docker compose up # start the spark environment
 ```
 
 The output is similar to this:
