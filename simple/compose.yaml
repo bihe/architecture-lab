@@ -1,31 +1,8 @@
 services:
-  spark-master:
-    image: public.ecr.aws/bitnami/spark:3.5.5
-    container_name: spark-master
-    hostname: spark-master
-    environment:
-      - SPARK_MODE=master
-      - SPARK_MASTER_HOST=spark-master
-    ports:
-      - "7077:7077"
-      - "8080:8080"
 
-  spark-worker:
-    image: public.ecr.aws/bitnami/spark:3.5.5
-    container_name: spark-worker
-    hostname: spark-worker
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-    depends_on:
-      - spark-master
-    ports:
-      - "8081:8081"
-
+  # jupyter notebook with pyspark integration
   jupyter-spark:
-    # presumably because of the dockerhub limits, the most recent 
-    # jupyter images are pushed to quay.io - not dockerhub
-    image: quay.io/jupyter/pyspark-notebook:latest
+    image: ghcr.io/bihe/architecture-lab/jupyter_pyspark:3.5.5
     container_name: jupyter-spark
     hostname: jupyter-spark
     volumes:
@@ -34,10 +11,6 @@ services:
       # https://docs.docker.com/engine/storage/bind-mounts/#configure-the-selinux-label
       - ./notebooks:/home/jovyan/notebooks:z 
     working_dir: /home/jovyan/notebooks
-    depends_on:
-      - spark-master
     ports:
       - "8888:8888"
-    
-    
 

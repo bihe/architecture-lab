@@ -1,9 +1,8 @@
 # Basic spark, jupyter Setup
-The compose file defines a simple [spark](https://spark.apache.org/) setup with a master-node and one worker. In addition [jupyter](https://jupyter.org/) notebooks are enabled to interact via python with the spark-cluster.
+The compose file defines a simple setup with [jupyter](https://jupyter.org/) and pyspark. Notebooks are enabled to interact via python with the spark-cluster.
 
 URLs:
 - 📌 Jupyter Notebook: http://localhost:8888
-- 📌 Spark Master UI: http://localhost:8080
 
 
 ## Start the environment
@@ -18,23 +17,19 @@ docker compose up # start the spark environment
 The output is similar to this:
 
 ```
-spark-master  | spark 16:51:26.08 INFO  ==> 
-spark-master  | spark 16:51:26.08 INFO  ==> Welcome to the Bitnami spark container
-spark-master  | spark 16:51:26.08 INFO  ==> Subscribe to project updates by watching https://github.com/bitnami/containers
-spark-master  | spark 16:51:26.08 INFO  ==> Did you know there are enterprise versions of the Bitnami catalog? For enhanced secure software supply chain features, unlimited pulls from Docker, LTS support, or application customization, see Bitnami Premium or Tanzu Application Catalog. See https://www.arrow.com/globalecs/na/vendors/bitnami/ for more information.
-spark-master  | spark 16:51:26.09 INFO  ==> 
-spark-master  | spark 16:51:26.12 INFO  ==> ** Starting Spark setup **
-spark-master  | spark 16:51:26.13 INFO  ==> Generating Spark configuration file...
-spark-master  | find: '/docker-entrypoint-initdb.d/': No such file or directory
-spark-master  | spark 16:51:26.13 INFO  ==> No custom scripts in /docker-entrypoint-initdb.d
-spark-master  | spark 16:51:26.14 INFO  ==> ** Spark setup finished! **
-spark-master  | 
-spark-master  | spark 16:51:26.14 INFO  ==> ** Starting Spark in master mode **
-spark-master  | starting org.apache.spark.deploy.master.Master, logging to /opt/bitnami/spark/logs/spark--org.apache.spark.deploy.master.Master-1-spark-master.out
-spark-master  | Spark Command: /opt/bitnami/java/bin/java -cp /opt/bitnami/spark/conf/:/opt/bitnami/spark/jars/* -Xmx1g org.apache.spark.deploy.master.Master --host spark-master --port 7077 --webui-port 8080
-spark-master  | ========================================
-jupyter       | Entered start.sh with args: start-notebook.py
-jupyter       | Running hooks in: /usr/local/bin/start-notebook.d as uid: 1000 gid: 100
+jupyter-spark  | Entered start.sh with args: start-notebook.py
+jupyter-spark  | Running hooks in: /usr/local/bin/start-notebook.d as uid: 1000 gid: 100
+jupyter-spark  | Done running hooks in: /usr/local/bin/start-notebook.d
+jupyter-spark  | Running hooks in: /usr/local/bin/before-notebook.d as uid: 1000 gid: 100
+jupyter-spark  | Sourcing shell script: /usr/local/bin/before-notebook.d/10activate-conda-env.sh
+jupyter-spark  | Sourcing shell script: /usr/local/bin/before-notebook.d/10spark-config.sh
+jupyter-spark  | Done running hooks in: /usr/local/bin/before-notebook.d
+jupyter-spark  | Executing the command: start-notebook.py
+jupyter-spark  | Executing: jupyter lab
+jupyter-spark  | [I 2025-04-21 12:48:57.182 ServerApp] jupyter_lsp | extension was successfully linked.
+jupyter-spark  | [I 2025-04-21 12:48:57.184 ServerApp] jupyter_server_mathjax | extension was successfully linked.
+jupyter-spark  | [I 2025-04-21 12:48:57.185 ServerApp] jupyter_server_terminals | extension was successfully linked.
+jupyter-spark  | [I 2025-04-21 12:48:57.186 ServerApp] jupyterlab | extension was successfully linked.
 
 [...]
 ```
@@ -44,9 +39,9 @@ To access the notebooks open the URL http://localhost:8888/ in the browser. A to
 
 
 ```
-jupyter       | [I 2025-04-05 14:38:32.895 ServerApp] Jupyter Server 2.8.0 is running at:
-jupyter       | [I 2025-04-05 14:38:32.895 ServerApp] http://bc88a31e5b4b:8888/lab?token=9083b1cdf3e2cabf0da9c6bd817429ddd442fd9580645e2e
-jupyter       | [I 2025-04-05 14:38:32.895 ServerApp]     http://127.0.0.1:8888/lab?token=9083b1cdf3e2cabf0da9c6bd817429ddd442fd9580645e2e
+upyter-spark  | [I 2025-04-05 14:38:32.895 ServerApp] Jupyter Server 2.8.0 is running at:
+upyter-spark  | [I 2025-04-05 14:38:32.895 ServerApp] http://bc88a31e5b4b:8888/lab?token=9083b1cdf3e2cabf0da9c6bd817429ddd442fd9580645e2e
+upyter-spark  | [I 2025-04-05 14:38:32.895 ServerApp]     http://127.0.0.1:8888/lab?token=9083b1cdf3e2cabf0da9c6bd817429ddd442fd9580645e2e
 ```
 
 After entering the token and choosing a password the notebook UI is available:
