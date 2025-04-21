@@ -1,3 +1,6 @@
 [submodule "storage_stream/src/container/docker-stacks"]
 	path = storage_stream/src/container/docker-stacks
 	url = https://github.com/jupyter/docker-stacks.git
+[submodule "2_storage_stream/src/container/docker-stacks"]
+	path = 2_storage_stream/src/container/docker-stacks
+	url = https://github.com/jupyter/docker-stacks.git
