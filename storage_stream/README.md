@@ -77,4 +77,5 @@ When the kafka notebook is executed, messages from the kafka are read and displa
 ![notebook output showing kafka stream](.images/notebook_kafka_output.png)
 
 
-
+> [!NOTE]  
+> **PowerShell**: The provided PowerShell scripts use the [current/modern PowerShell variant](https://github.com/PowerShell/PowerShell) and are not tested with the legacy PowerShell provided by Windows ([Differences between Windows PowerShell 5.1 and PowerShell 7.x](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell?view=powershell-7.5)).
