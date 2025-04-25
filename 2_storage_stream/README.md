@@ -56,11 +56,11 @@ jupyter-spark  |         http://127.0.0.1:8888/lab?token=b266e68134ba8768e8e8f6d
 ```
 
 ## 2. Notebooks
-The folder `src/notebooks` contains example notebooks to interact with the environment:
+The folder `notebooks` contains example notebooks to interact with the environment:
 - *kafka_stream.ipynb*  --  Streaming query from Kafka topic
 - *storage_minio.ipynb* --  Interact with the storage component MiniIO
 
-To use the notebooks either the **Jupyter Web-UI** can be used ([http://localhost:8888](http://localhost:8888)) or the Jupyter server is connected in **VSCode** and notebooks opende within VSCode by using the URL with token ([http://localhost:8888/lab?token=<token-from-console>](http://localhost:8888/lab?token=<token-from-console>))
+To use the notebooks either the **Jupyter Web-UI** can be used ([http://localhost:8888](http://localhost:8888)) or the Jupyter server is connected in **VSCode** and notebooks opened within VSCode by using the URL with token ([http://localhost:8888/lab?token=<token-from-console>](http://localhost:8888/lab?token=<token-from-console>))
 
 ### Storage
 The python package [boto3](https://pypi.org/project/boto3/) is available to interact with S3-compatible storage. The notebook example creates a bucket and puts a text-file in the bucket.

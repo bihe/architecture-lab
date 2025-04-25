@@ -20,9 +20,9 @@ services:
       - "4040:4040" # UI for spark-jobs
     
   # https://min.io/
-  # s3 compatible storage provided by miniio
+  # s3 compatible storage provided by minio
   minio:
-    image: minio/minio
+    image: minio/minio:latest
     container_name: minio
     command: server /data --console-address ":9001"
     environment:

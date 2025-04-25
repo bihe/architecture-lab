@@ -15,8 +15,7 @@ The example implements a three-staged setup also known as [medallion architectur
 ## 1. Start the environment
 To start the necessary services use docker compose (or podman, or ...).
 
-> [!NOTE]  
-> **Docker**: The compose files where created on Linux with [docker-ce](https://docs.docker.com/engine/install/ubuntu/), tested on Windows with [Docker-Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) on Mac with [OrbStack](https://orbstack.dev/). Other container-environments like podman may work/may need adaptions.
+
 
 ```bash
 # uses the file compose.yaml|.yml by default
@@ -58,22 +57,31 @@ jupyter-spark  |         http://127.0.0.1:8888/lab?token=b266e68134ba8768e8e8f6d
 
 ```
 
+### Access Jupyter Lab
+The compose file defines a **common token** for the jupyter lab:
+`JUPYTER_TOKEN=easy` - as a result the URL to access the jupyter lab is *simplified*: http://localhost:8888/lab?token=easy
+
 ## 2. Notebooks
-The folder `src/notebooks` contains notebooks to interact with the environment:
+The folder `notebooks` contains notebooks to interact with the environment:
 
+### 2.1 Weather Data
+An example is available to work with **weather-data**. Using a *static file* as an input or querying an open weather API ([https://api.open-meteo.com](https://api.open-meteo.com)). The weather-data is fed into a [Kafka topic](https://kafka.apache.org/intro) to be processed.
 
+- **1_weather_data**
+  - file_weather_data
+  - online_weather_data
 
-### Streaming
-To use the kafka_stream notebook the Kafka topic needs to be available and messages need to be produced. To enable this scripts are available in the folder `src/scripts`.
+### 2.2 Medallion Architecture
+Three notebooks model the Bronze/Silver/Gold layer. Again data from the weather API is used and processed in the different notebooks. 
 
-- *kafka_create_topic*
-- *kafka_console_producer*
-- *kafka_console_consumer*
-
-When the kafka notebook is executed, messages from the kafka are read and displayed directly in the notebook. 
-
-
+- **2_medallion_architecture**
+  - 1_ingest_bronze
+  - 2_process_silver
+  - 3_serving_gold
 
 
 > [!NOTE]  
-> **PowerShell**: The provided PowerShell scripts use the [current/modern PowerShell variant](https://github.com/PowerShell/PowerShell) and are not tested with the legacy PowerShell provided by Windows ([Differences between Windows PowerShell 5.1 and PowerShell 7.x](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell?view=powershell-7.5)).
+> **Jupyter**: To reprocess the notebooks restart the python kernel in the notebooks. 
+
+> [!NOTE]  
+> **Kafka**: Kafka keeps track of the consumers. To get all data of a Kafka topic, change the Consumer 'group.id'.
