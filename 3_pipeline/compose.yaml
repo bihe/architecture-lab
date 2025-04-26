@@ -15,6 +15,8 @@ services:
       # https://docs.docker.com/engine/storage/bind-mounts/#configure-the-selinux-label
       - ./notebooks:/home/jovyan/notebooks:z 
     working_dir: /home/jovyan/notebooks
+    networks:
+      - lab-network
     ports:
       - "8888:8888" # notebook UI
       - "4040:4040" # UI for spark-jobs
@@ -28,6 +30,8 @@ services:
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=password
+    networks:
+      - lab-network
     ports:
       - "9000:9000"   # MinIO API
       - "9001:9001"   # MinIO Console
@@ -47,12 +51,25 @@ services:
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       # Listeners
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      # SRC: https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      # this is rather tricky to enable communication within the docker-network (compose-setup)
+      # but also enable connectivity from the "outside" of docker
+      # the solution is to configure 2 listeners
+      #  - INTERNAL: used for intra-docker-network communication, where the hostname kafka ca be resolved
+      #  - EXTERNAL: used to connect to kafka from the outside world (outside in the sense of not docker)
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,CONTROLLER://:9093,EXTERNAL://:19092
+      # to make this happen we use one additional listener and tell kafka to advertise the second listener with 
+      # localhost:19092 --> this port is mapped and can be accessed from the outside
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:19092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
+    networks:
+      - lab-network
     ports:
       - "9092:9092"
+      - "19092:19092"
 
-  
+networks:
+  lab-network:
+    name: lab-network
