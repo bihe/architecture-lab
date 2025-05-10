@@ -1,6 +1,6 @@
 #!/bin/sh
 CONTAINER_NAME="kafka"
-TOPIC_NAME="weather-data"
+TOPIC_NAME="weather-data-pipeline"
 KAFKA_HOST="kafka:9092"
 
 docker exec -it ${CONTAINER_NAME} \
