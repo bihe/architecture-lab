@@ -64,15 +64,8 @@ The compose file defines a **common token** for the jupyter lab:
 ## 2. Notebooks
 The folder `notebooks` contains notebooks to interact with the environment:
 
-### 2.1 Weather Data
-An example is available to work with **weather-data**. Using a *static file* as an input or querying an open weather API ([https://api.open-meteo.com](https://api.open-meteo.com)). The weather-data is fed into a [Kafka topic](https://kafka.apache.org/intro) to be processed.
-
-- **1_weather_data**
-  - file_weather_data
-  - online_weather_data
-
-### 2.2 Medallion Architecture
-Three notebooks model the Bronze/Silver/Gold layer. Again data from the weather API is used and processed in the different notebooks. 
+### 2.1 Medallion Architecture
+Three notebooks model the Bronze/Silver/Gold layer. Weather data is ingested which was created by the `weather_producer`. 
 
 - **2_medallion_architecture**
   - 1_ingest_bronze

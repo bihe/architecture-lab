@@ -1,5 +1,0 @@
-[
-  {"sensor_id": "WS_001", "temperature": 15.2, "humidity": 65, "wind_speed": 12.4, "timestamp": "2025-02-14T10:00:00Z"},
-  {"sensor_id": "WS_002", "temperature": 18.5, "humidity": 55, "wind_speed": 10.1, "timestamp": "2025-02-14T10:01:00Z"},
-  {"sensor_id": "WS_003", "temperature": 21.0, "humidity": 50, "wind_speed": 8.7, "timestamp": "2025-02-14T10:02:00Z"}
-]

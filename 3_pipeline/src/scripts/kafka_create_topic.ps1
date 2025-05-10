@@ -1,5 +1,5 @@
 $containerName = "kafka"
-$topicName = "weather-data"
+$topicName = "weather-data-pipeline"
 $kafkaHost = "kafka:9092"
 
 docker exec -it $containerName `
