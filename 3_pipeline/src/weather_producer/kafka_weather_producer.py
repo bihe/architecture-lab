@@ -61,7 +61,7 @@ def main():
     forecast_days = get_env_default("WEATHER_FORECAST_DAYS", 4)
     # see listener configuration @ kafka
     kafka_broker = get_env_default("KAFKA_BROKER", "localhost:19092")
-    kafka_topic = get_env_default("KAFKA_TOPIC", "weather-data")
+    kafka_topic = get_env_default("KAFKA_TOPIC", "weather-data-pipeline")
 
     weather_data = fetch_weather_data(lat, long, forecast_days)
     if weather_data is None:

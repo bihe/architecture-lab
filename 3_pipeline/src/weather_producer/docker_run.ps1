@@ -4,6 +4,6 @@ docker run `
     -e WEATHER_LOCATION_LONG=13.09 `
     -e WEATHER_FORECAST_DAYS=4 `
     -e KAFKA_BROKER=kafka:9092 `
-    -e KAFKA_TOPIC=weather-data `
+    -e KAFKA_TOPIC=weather-data-pipeline `
     --network lab-network `
     weather_data_producer
