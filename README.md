@@ -55,5 +55,5 @@ Introduce [Apache Kafka](https://kafka.apache.org/) for streaming data and [MinI
 ### 3_pipeline
 Shows a simple data-pipeline with Bronze/Silver/Gold notebooks and storing data in [Parquet Format](https://parquet.apache.org/) and using [DuckDB](https://duckdb.org/) for data processing.
 
-### 4_dashboard
+### 4_user_interface
 A [streamlit](https://streamlit.io/) app to visualize the processed pipeline data in the **GOLD** layer. 
