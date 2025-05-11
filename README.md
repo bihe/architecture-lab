@@ -36,7 +36,14 @@ For **Windows** a good combination of shell/terminal is [PowerShell](https://git
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-**cmd.exe**: If you use [cmd.exe](https://en.wikipedia.org/wiki/Cmd.exe), you are without help. Nobody should use this old command-interpreter anymore!
+> [!WARNING]  
+> **cmd.exe**: If you use [cmd.exe](https://en.wikipedia.org/wiki/Cmd.exe), you are without help. Nobody should use this old command-interpreter anymore!
+
+### Python
+A modern package manager for python should be used to simplify dependency-management and environment setup.
+
+> [!NOTE]  
+> **uv**: I very much recommend [uv](https://github.com/astral-sh/uv) "An extremely fast Python package and project manager, written in Rust."
 
 ## Examples
 ### 1_simple
@@ -47,3 +54,6 @@ Introduce [Apache Kafka](https://kafka.apache.org/) for streaming data and [MinI
 
 ### 3_pipeline
 Shows a simple data-pipeline with Bronze/Silver/Gold notebooks and storing data in [Parquet Format](https://parquet.apache.org/) and using [DuckDB](https://duckdb.org/) for data processing.
+
+### 4_dashboard
+A [streamlit](https://streamlit.io/) app to visualize the processed pipeline data in the **GOLD** layer. 
